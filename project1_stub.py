@@ -30,10 +30,9 @@ class Point:
 def bounding_box(points):
     # This stub code is not correct and needs to be replaced with your
     # working algorithm implementation.
-    x_min = 1
-    x_max = 0
-    y_min = 1
-    y_max = 0
+    
+    #points values range from 0 to 1, we initilize minimums = 1 and maximums = 0
+    x_min, x_max, y_min, y_max = 1,0,1,0        
 
     for point in points:
         if point.x < x_min:
@@ -47,7 +46,7 @@ def bounding_box(points):
         print('point x: {}\npoint y: {}'.format(point.x, point.y))
     print(x_min, y_min, x_max, y_max)
     return(x_min, y_min, x_max, y_max)
-    # return (0, 0, 1, 1)
+    #return (0, 0, 1, 1)
 
 # input: a list of Point objects
 # output: a list of the Point objects on the convex hull boundary
