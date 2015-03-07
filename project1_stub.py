@@ -28,9 +28,6 @@ class Point:
 # input: a list of Point objects
 # output: a 4-tuple (x_min, y_min, x_max, y_max)
 def bounding_box(points):
-    # This stub code is not correct and needs to be replaced with your
-    # working algorithm implementation.
-    
     #points values range from 0 to 1, we initilize minimums = 1 and maximums = 0
     x_min, x_max, y_min, y_max = 1,0,1,0        
 
@@ -46,27 +43,41 @@ def bounding_box(points):
         print('point x: {}\npoint y: {}'.format(point.x, point.y))
     print(x_min, y_min, x_max, y_max)
     return(x_min, y_min, x_max, y_max)
-    #return (0, 0, 1, 1)
+    #return (0, 0, 1, 1)            #return this to see entire euclidian plane
 
 # input: a list of Point objects
 # output: a list of the Point objects on the convex hull boundary
 #Code supplied by professor form assignment
 def convex_hull(points):
-    # This stub code is not correct and needs to be replaced with your
-    # # working algorithm implementation.
-    # H = []          #points on the hull boundary
-    # for p in P:
-    #     for q in P:
-    #         if p! = q:
-    #             l = <THE LINE PASSING THROUGH p AND q>
+    H = []          #points on the hull boundary
+    for point in points:
+        for other_point in points:
+            if point != other_point:
+    
+    #             l = <THE LINE PASSING THROUGH point AND other_point>
+    #             equation of line: y-y_1 = m(x - x_1)
+    #             m = (y_2-y_1)/(x_2-x_1)
+    #             calculate m:
+                m = (other_point.y - point.y)/(other_point.x - point.x)
+    #             make the line:
+    #             y = m*x- m*point.x + point.y
+                 
+    
     #             k = <THE NUMBER OF POINTS ABOVE 1>
-    #             if k == 0 or k == len(P)-2:
-    #                 if p not in H:
-    #                     H.append(p)
-    #                 if q not in H:
-    #                     H.append(q)
-    # return H
-    return points[:4]
+                k = 0
+                for next_point in points:
+                    if next_point != point and next_point != other_point:
+                        y = m*next_point.x - m*point.x + point.y
+                        if y < next_point.y:
+                            k += 1
+    
+                if k == 0 or k == len(points)-2:
+                    if point not in H:
+                        H.append(point)
+                    if other_point not in H:
+                        H.append(other_point)
+    return H
+    # return points[:4]
 
 ###############################################################################
 # The following code is reponsible for generating instances of random
@@ -176,7 +187,7 @@ def trial(do_box, do_hull, n):
 # gather the evidence you need.
 ###############################################################################
 def main():
-    trial(True, False, 20)
+    trial(True, True, 20)
 
 if __name__ == '__main__':
     main()
