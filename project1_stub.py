@@ -40,41 +40,41 @@ def bounding_box(points):
             y_min = point.y
         if point.y > y_max:
             y_max = point.y
-#        print('point x: {}\npoint y: {}'.format(point.x, point.y))
-#    print(x_min, y_min, x_max, y_max)
+            
     return(x_min, y_min, x_max, y_max)
     #return (0, 0, 1, 1)            #return this to see entire euclidian plane
 
 # input: a list of Point objects
 # output: a list of the Point objects on the convex hull boundary
-#Code supplied by professor form assignment
+#Partial code supplied by professor for assignment
 def convex_hull(points):
     H = []          #points on the hull boundary
     for point in points:
-        for other_point in points:
-            if point != other_point:
-    #           l = <THE LINE PASSING THROUGH point AND other_point>
+        for second_point in points:
+            if point != second_point:
+    #           l = <THE LINE PASSING THROUGH point AND second_point>
     #             equation of line: y-y_1 = m(x - x_1)
     #           calculate slope:
     #             slope = m = (y_2-y_1)/(x_2-x_1)
-                m = (other_point.y - point.y)/(other_point.x - point.x)
+                m = (second_point.y - point.y)/(second_point.x - point.x)
 
     #           k = <THE NUMBER OF POINTS ABOVE 1>
     #               With our line's slope calculated, we calculate where the line should
-    #               be at the next_point's x value. If the next_point's y value is greater
+    #               be at the third_point's x value. If the third_point's y value is greater
     #               than the line's y value we know that the point is above the line
                 k = 0
-                for next_point in points:
-                    if next_point != point and next_point != other_point:
-                        y = m*next_point.x - m*point.x + point.y
-                        if y < next_point.y:
+                for third_point in points:
+                    if third_point != point and third_point != second_point:
+                        #find the y value for our line
+                        y = m*third_point.x - m*point.x + point.y
+                        if y < third_point.y:
                             k += 1
     
                 if k == 0 or k == len(points)-2:
                     if point not in H:
                         H.append(point)
-                    if other_point not in H:
-                        H.append(other_point)
+                    if second_point not in H:
+                        H.append(second_point)
     return H
 
 ###############################################################################
@@ -185,7 +185,7 @@ def trial(do_box, do_hull, n):
 # gather the evidence you need.
 ###############################################################################
 def main():
-    n = [20,50,100,200,40]
+    n = [20,200]
     for i in n:
         trial(True, True, i)
 
