@@ -185,7 +185,9 @@ def trial(do_box, do_hull, n):
 # gather the evidence you need.
 ###############################################################################
 def main():
-    trial(True, True, 250)
+    n = [20,50,100,200,40]
+    for i in n:
+        trial(True, True, i)
 
 if __name__ == '__main__':
     main()
