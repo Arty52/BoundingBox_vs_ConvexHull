@@ -60,8 +60,9 @@ def convex_hull(points):
                 m = (other_point.y - point.y)/(other_point.x - point.x)
 
     #           k = <THE NUMBER OF POINTS ABOVE 1>
-    #               With our line's slope calculated, if the y value from next_point
-    #               is greater than 
+    #               With our line's slope calculated, we calculate where the line should
+    #               be at the next_point's x value. If the next_point's y value is greater
+    #               than the line's y value we know that the point is above the line
                 k = 0
                 for next_point in points:
                     if next_point != point and next_point != other_point:
