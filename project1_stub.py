@@ -2,7 +2,7 @@
 # CPSC 335 Project 1
 # Spring 2015
 #
-# Authors: <FILL IN YOUR NAME(S) HERE>
+# Authors: Art Grichine, Adam Beck
 ###############################################################################
 
 # constant parameters
@@ -30,13 +30,43 @@ class Point:
 def bounding_box(points):
     # This stub code is not correct and needs to be replaced with your
     # working algorithm implementation.
-    return (0, 0, 1, 1)
+    x_min = 1
+    x_max = 0
+    y_min = 1
+    y_max = 0
+
+    for point in points:
+        if point.x < x_min:
+            x_min = point.x
+        if point.x > x_max:
+            x_max = point.x
+        if point.y < y_min:
+            y_min = point.y
+        if point.y > y_max:
+            y_max = point.y
+        print('point x: {}\npoint y: {}'.format(point.x, point.y))
+    print(x_min, y_min, x_max, y_max)
+    return(x_min, y_min, x_max, y_max)
+    # return (0, 0, 1, 1)
 
 # input: a list of Point objects
 # output: a list of the Point objects on the convex hull boundary
+#Code supplied by professor form assignment
 def convex_hull(points):
     # This stub code is not correct and needs to be replaced with your
-    # working algorithm implementation.
+    # # working algorithm implementation.
+    # H = []          #points on the hull boundary
+    # for p in P:
+    #     for q in P:
+    #         if p! = q:
+    #             l = <THE LINE PASSING THROUGH p AND q>
+    #             k = <THE NUMBER OF POINTS ABOVE 1>
+    #             if k == 0 or k == len(P)-2:
+    #                 if p not in H:
+    #                     H.append(p)
+    #                 if q not in H:
+    #                     H.append(q)
+    # return H
     return points[:4]
 
 ###############################################################################
@@ -147,7 +177,7 @@ def trial(do_box, do_hull, n):
 # gather the evidence you need.
 ###############################################################################
 def main():
-    trial(True, True, 20)
+    trial(True, False, 20)
 
 if __name__ == '__main__':
     main()
