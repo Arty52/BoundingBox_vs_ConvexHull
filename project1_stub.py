@@ -40,8 +40,8 @@ def bounding_box(points):
             y_min = point.y
         if point.y > y_max:
             y_max = point.y
-        print('point x: {}\npoint y: {}'.format(point.x, point.y))
-    print(x_min, y_min, x_max, y_max)
+#        print('point x: {}\npoint y: {}'.format(point.x, point.y))
+#    print(x_min, y_min, x_max, y_max)
     return(x_min, y_min, x_max, y_max)
     #return (0, 0, 1, 1)            #return this to see entire euclidian plane
 
@@ -53,17 +53,15 @@ def convex_hull(points):
     for point in points:
         for other_point in points:
             if point != other_point:
-    
-    #             l = <THE LINE PASSING THROUGH point AND other_point>
+    #           l = <THE LINE PASSING THROUGH point AND other_point>
     #             equation of line: y-y_1 = m(x - x_1)
-    #             m = (y_2-y_1)/(x_2-x_1)
-    #             calculate m:
+    #           calculate slope:
+    #             slope = m = (y_2-y_1)/(x_2-x_1)
                 m = (other_point.y - point.y)/(other_point.x - point.x)
-    #             make the line:
-    #             y = m*x- m*point.x + point.y
-                 
-    
-    #             k = <THE NUMBER OF POINTS ABOVE 1>
+
+    #           k = <THE NUMBER OF POINTS ABOVE 1>
+    #               With our line's slope calculated, if the y value from next_point
+    #               is greater than 
                 k = 0
                 for next_point in points:
                     if next_point != point and next_point != other_point:
@@ -77,7 +75,6 @@ def convex_hull(points):
                     if other_point not in H:
                         H.append(other_point)
     return H
-    # return points[:4]
 
 ###############################################################################
 # The following code is reponsible for generating instances of random
@@ -187,7 +184,7 @@ def trial(do_box, do_hull, n):
 # gather the evidence you need.
 ###############################################################################
 def main():
-    trial(True, True, 20)
+    trial(True, True, 250)
 
 if __name__ == '__main__':
     main()
